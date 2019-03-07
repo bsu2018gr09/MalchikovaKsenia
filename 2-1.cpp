@@ -2,7 +2,7 @@
 using namespace std;
 
 int** newArray(int rows, int cols) {
-    int **arr = new int* [rows];
+    int **arr = new(nothrow) int* [rows];
     for (int i=0; i<rows; i++)
         arr[i] = new int [cols];
     if (!arr) cout << "Could not allocate memory" << '\n';
@@ -35,7 +35,7 @@ void printA(int** arr, int rows, int cols) {
     cout << '\n';
 }
 
-void movieRows(int** arr, int rows, int cols){
+void moveRows(int** arr, int rows, int cols){
     int max = **arr, min = **arr;
     long int max_row = 0, min_row = 0;
     int A;
@@ -65,7 +65,7 @@ int main() {
     cin >> rows >> cols;
     int** arr = newArray(rows, cols);
     inputA(arr, rows, cols);
-    movieRows(arr, rows, cols);
+    moveRows(arr, rows, cols);
     printA(arr, rows, cols);
     deleteA(arr, rows);
     return 0;
