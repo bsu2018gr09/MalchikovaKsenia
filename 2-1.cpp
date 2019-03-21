@@ -3,6 +3,7 @@ using namespace std;
 
 int** newArray(int rows, int cols) {
     int **arr = new(nothrow) int* [rows];
+    if (!arr) cout << "Could not allocate memory" << '\n';
     for (int i=0; i<rows; i++)
         arr[i] = new int [cols];
     if (!arr) cout << "Could not allocate memory" << '\n';
