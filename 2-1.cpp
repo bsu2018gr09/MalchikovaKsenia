@@ -1,12 +1,21 @@
+//В массиве А(N,М) поменять местами строки, содержащие максимальный и минимальный элементы
+
 #include <iostream>
 using namespace std;
 
 int** newArray(int rows, int cols) {
     int **arr = new(nothrow) int* [rows];
-    if (!arr) cout << "Could not allocate memory" << '\n';
-    for (int i=0; i<rows; i++)
-        arr[i] = new int [cols];
-    if (!arr) cout << "Could not allocate memory" << '\n';
+    if (!arr) {
+        cout << "Could not allocate memory" << '\n';
+        exit(EXIT_FAILURE);
+    }
+        for (int i=0; i<rows; i++) {
+          arr[i] = new int [cols];
+            if (!arr[i]) {
+                cout << "Could not allocate memory" << '\n';
+                exit(EXIT_FAILURE);
+            }
+        }
     return arr;
 }
 
