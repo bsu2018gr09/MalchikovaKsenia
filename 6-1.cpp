@@ -6,12 +6,12 @@ using namespace std;
 const int n {4};
 
 class Point {
-    int* coord;
+    int* coord;//Реально? int??????? хм...
     
 public:
     string name;
     
-    Point(int* c)
+    Point(int* c)//очень неочевидный и странный способ инициализации
     {
         coord = new (nothrow) int[n];
         for (int i = 0; i < n; ++i)
@@ -63,7 +63,7 @@ public:
         return (diff);
     };
     
-    const Point operator * (const Point point1)
+    const Point operator * (const Point point1)// Умножение точек??? Я бы понял умножение на число!!!!
     {
         Point mlt;
         for (int i = 0; i < n; ++i)
@@ -93,7 +93,7 @@ public:
         for (int i = 0; i < n; ++i)
         {
             if (point1.coord[i] == coord[i])
-                tmp = true;
+                tmp = true;//зачем?????
             else
             {
             return false;
