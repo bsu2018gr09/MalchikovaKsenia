@@ -82,6 +82,6 @@ int main()
     inputA(pA, n);
     printA(pA, n);
     sortA(pA, n);
-    initA(pA, n);
-    return 0;
+    initA(pA, n);//что это??? Зачем???
+    return 0;//а где очистка памяти????
 }
