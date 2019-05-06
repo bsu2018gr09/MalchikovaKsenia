@@ -26,7 +26,7 @@ void inputSTR(char* &str) {
 
 char* f(char* str) {
     char substr[] = "**";
-    char signs[] = " ,.!?):;";
+    char signs[] = " ,.!?):;"; 
     
     unsigned long n = strlen(str);
     
