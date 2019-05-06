@@ -64,7 +64,7 @@ void moveRows(int** arr, int rows, int cols){
     }
     
     for (int j = 0; j < cols ; j++){
-        swap(*(*(arr+max_row)+j), *(*(arr+min_row)+j));
+        swap(*(*(arr+max_row)+j), *(*(arr+min_row)+j));//совсем плохо... Это то, что мы делали в 1 семестре. А здесь надо поменять СТРОКИ. Указатели не используешь!!!!
     }
 }
 
