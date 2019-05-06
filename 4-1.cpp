@@ -51,7 +51,7 @@ int searchWords(const char* path, char** arr)
         {
             if (isPalindrome(word))
             {
-                strcpy(*(arr+cnt), word);
+                strcpy(*(arr+cnt), word);// тут вылетит за границы массива. Портит память... Виснет
                 cnt++;
             }
             word = strtok(NULL, " ,.!?");
@@ -123,7 +123,7 @@ int main()
     
     for (int i = 0; i < m; i++)
     {
-        *(arr + i) = new (nothrow) char [m];
+        *(arr + i) = new (nothrow) char [m];//вообще не понятно зачем такие большие строки???
         
         if (!*(arr+i))
         {
