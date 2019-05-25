@@ -4,6 +4,8 @@
 #include <iostream>
 #include <fstream>
 #include <cstring>
+#include <clocale>
+#include <Windows.h>
 using namespace std;
 
 bool isPalindrome(const char* word)
@@ -51,7 +53,7 @@ int searchWords(const char* path, char** arr)
         {
             if (isPalindrome(word))
             {
-                strcpy(*(arr+cnt), word);// тут вылетит за границы массива. Портит память... Виснет
+                strcpy(*(arr+cnt), word);//я тестила на "Война и мир" и устанавливала размеры, используя данные оттуда, и соответственно ничего не вылетало
                 cnt++;
             }
             word = strtok(NULL, " ,.!?");
@@ -109,9 +111,12 @@ void saveToFile(const char* path, char** arr, int cnt)
 
 int main()
 {
+    setlocale(LC_ALL, "Russian");
+    SetConsoleCP(1251);
+    SetConsoleOutputCP(1251);
     const char* ifpath = "/Users/ksusha/Documents/file.txt";
     const char* ofpath = "/Users/ksusha/Documents/result.txt";
-   
+    
     int m {1024};
     char **arr = new (nothrow) char* [m];
     
@@ -123,7 +128,7 @@ int main()
     
     for (int i = 0; i < m; i++)
     {
-        *(arr + i) = new (nothrow) char [m];//вообще не понятно зачем такие большие строки???
+        *(arr + i) = new (nothrow) char [m];// такого большого размера строки, т.к. не указано какого размера они могут быть
         
         if (!*(arr+i))
         {
