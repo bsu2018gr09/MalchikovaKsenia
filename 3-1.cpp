@@ -54,8 +54,8 @@ char* f (char* str)
     strcpy(subst, "**");
     char signs[] = " ,.!?):;";
     int n = strlen(str);
-    bool flag{ 0 };
-    int lenFirst{ 0 }, lenLast{ 0 };
+    bool flag=false;
+    int lenFirst=0 , lenLast=0;
     int tmp;
     
     for (int i = 0; i < n; ++i)
@@ -79,7 +79,7 @@ char* f (char* str)
     int infirstWord = tmp;
     cout << lenFirst << " ";
     
-    int inLastWord{ 0 };
+    int inLastWord=0;
     flag = 0;
     
     for (int i = n - 1; i >= 0; --i)
@@ -106,7 +106,7 @@ char* f (char* str)
     int lastword = strlen(str) - inLastWord;
     cout << lenLast << " ";
     
-    char* newstr = nullptr;
+    char* newstr = 0;
     
     if (lenFirst != 0 && lenFirst == lenLast)
     {
@@ -140,7 +140,7 @@ int main() {
     setlocale(LC_ALL, "Russian");
     SetConsoleCP(1251);
     SetConsoleOutputCP(1251);
-    char* str = nullptr;
+    char* str = 0;
     
     cout << "Enter text" << '\n';
     inputSTR(str);
@@ -152,10 +152,10 @@ int main() {
     }
     
     delete[] str;
-    str = nullptr;
+    str = 0;
     
     delete[] newstr;
-    newstr = nullptr;
-    
+    newstr = 0;
+    system("pause");
     return 0;
 }
