@@ -1,91 +1,123 @@
+// Положительные элементы массива А(N) переставить в конец массива, сохраняя порядок следования. Отрицательные элементы расположить в порядке убывания. Дополнительный массив не использовать.
 #include <iostream>
-//2. Положительные элементы массива А(N) переставить в конец массива, сохраняя порядок следования. Отрицательные элементы расположить в порядке убывания. Дополнительный массив не использовать. Нолики - по вашему усмотрению.
+
 using namespace std;
-
-int* newArray(int n) {
-    int* pA = new (nothrow) int[n];
-    if (!pA) cout << "Could not allocate memory" << '\n';
-    return pA;
-}
-
-int* deleteA(int* pA) {
-    delete[] pA;
-    pA=nullptr;
-    return pA;
-}
-
-void inputA(int *pA, int n)
+void initArray(int *arr, int n, int min, int max)
 {
-    for (int* i = pA; i < pA+n ; i++) {
-        cout << "Enter " << i-pA+1 << " number" <<endl;
-        cin >> *i;
+    srand(time(0));
+    max++;
+    int tmp = max - min;
+    for (int i = 0; i < n; i++,++arr)
+    {
+        *(arr) = rand() % tmp + min;
+    }
+}
+
+void sort(int *array, int n) {
+    int tmp;
+    int* a1 = nullptr;
+    int* a2 = nullptr;
+    char f{1};
+    char f_min{0};
+    for (int i = 0; i < n; i++) {
+        f_min = 0;
+        a2 = array + n;
+        a1 = array + n-1;
+        f = 1;
+        for (int j = n; j > -1; j--)
+        {
+            if ((!f_min) && (*a1 < 0))
+            {
+                a2 = a1;
+                f_min = 1;
+            }
+            else if (((*a1 >= 0) && f_min) )
+            {
+                tmp = *a2;
+                *a2 = *a1;
+                *a1 = tmp;
+                f_min = 0;
+                f = 0;
+            }
+            
+            a1--;
+            
+        }
+        if (f)
+            break;
+    }
+    int cnt{1};
+    int *arr = array;
+    while (*(arr+1) < 0)
+    {
+        if (*arr < *(arr + 1))
+        {
+            tmp = *arr;
+            *arr = *(arr + 1);
+            *(arr + 1) = tmp;
+        }
+        ++cnt;
+        ++arr;
+    }
+    for (int i = 0; i < cnt ; i++)
+    {
+        f = 1;
+        arr = array;
+        for (int j = 0; j < cnt -1; j++)
+        {
+            if (*arr < *(arr + 1))
+            {
+                tmp = *arr;
+                *arr = *(arr + 1);
+                *(arr + 1) = tmp;
+                f = 0;
+            }
+            ++arr;
+        }
+        if (f)
+            break;
     }
     
-    //второй вариант ввода
-    /*for (int i = 0; i < n ; i++) {
-       cout << "" << i+1 << "" << endl;
-       cin >> *(pA+i);
-    }*/
 }
 
-void initA (int* pA, int n) {//что это???? Зачем????
-    for (int* i = pA; i < pA+n; i++) {
-        *(i) = 1;
-        cout << *(i) << " ";
-    }
-}
 
-void printA (int *pA, int n) {
-    for (int* i = pA; i < pA+n; i++) {
-        cout << *i << " ";
+
+void printArr(int*  arr, int n)
+{
+    for (int i = 0; i < n; ++i)
+    {
+        cout << *(arr++) << "   ";
     }
     cout << '\n';
 }
 
-void orderA(int* pA, int n) {
-    int j = -1;
-    for (int i = n-1; i >= 0; i--){
-        if (*(pA+i) >= 0 && j == -1) continue;
-        if (j == -1) {
-            j = i;
-            continue;
-        }
-        if (*(pA+i)<0) continue;
-        for (int k = i; k<j; k++)
-            swap(*(pA+k), *(pA+k+1));
-        j = j-1;
+int *giveMemory( int n)
+{
+    int *a = new(nothrow) int[n];
+    if (!a)
+    {
+        cout << "Couldn't allocate memory";
+        exit;
     }
-    j=-1;
-    for (int i=0; i<n; i++) {
-        if (*(pA+i) > 0) {
-            j=i;
-            break;
-        }
-    }
-    if (j == -1) {
-        j = n;
-    }
-    if (j != 0) {
-        for (int i=0; i<j; i++){
-            for (int k=0; k<j-i-1; k++){
-                if (*(pA+i+1) > *(pA+i)) swap(*(pA+i+1), *(pA+i));
-            }
-        }
-    }
-    for (int i=0; i<n; i++)
-        cout << *(pA+i) << " ";
-    cout << endl;
+    return a;
 }
+
+void freeMemory(int *a)
+{
+    delete[] a;
+    a = nullptr;
+    
+}
+
 
 int main()
 {
     int n;
-    cout << "Enter n" << '\n';
     cin >> n;
-    int* pA = newArray(n);
-    inputA(pA, n);
-    printA(pA, n);
-    orderA(pA, n);
-    initA(pA, n);
-    return 0;
+    int *array = giveMemory(n);
+    initArray(array, n, -5, 5);
+    printArr(array, n);
+    sort(array, n);
+    printArr(array, n);
+    freeMemory(array);
 }
