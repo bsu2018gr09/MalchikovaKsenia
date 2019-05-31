@@ -8,12 +8,6 @@ int* newArray(int n) {
     return pA;
 }
 
-int* deleteA(int* pA) {
-    delete[] pA;
-    pA=nullptr;
-    return pA;
-}
-
 void inputA(int *pA, int n)
 {
     for (int* i = pA; i < pA+n ; i++) {
@@ -82,6 +76,7 @@ int main()
     inputA(pA, n);
     printA(pA, n);
     sortA(pA, n);
-    deleteA(pA, n);//что это??? Зачем???
+    delete[] pA;//что это??? Зачем???
+    pA = 0;
     return 0;//а где очистка памяти????
 }
