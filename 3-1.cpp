@@ -53,7 +53,7 @@ void inputSTR(char* &str)
     cin.getline(buf, MAX);
     str = createSTR(strlen(buf) + 1);
     strcpy(str, buf);
-}
+} 
 
 char* f(char* str)
 {
