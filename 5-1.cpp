@@ -30,12 +30,12 @@ int main() {
     ggg.write((char *)&buf, 28);    //запись 28 байт заголовка bmp
     
     c.r = 0; //первый цвет градиента
-    c.g = 0;
+    c.g = 255;
     c.b = 0;
     
     float rr = 255; // второй цвет градиента
-    float gg = 255;
-    float bb = 255;
+    float gg = 0;
+    float bb = 100;
     float step = 100; // кол-во шагов
     if (step >= w)
         step = w;
