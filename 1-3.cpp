@@ -16,7 +16,7 @@ void inputA(int *pA, int n)
     }
     
     //второй вариант ввода
-    /*for (int i = 0; i < n ; i++) {
+    /*for (int i = 0; i < n ; i++) { 
        cout << "" << i+1 << "" << endl;
        cin >> *(pA+i);
     }*/
